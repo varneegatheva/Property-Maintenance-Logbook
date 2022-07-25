@@ -43,12 +43,20 @@ class PropertyTest {
     property.addInspection(new Inspection("12121997", "plumbing", "drywall", "notes"));
     property.addInspection(new Inspection("12121997", "plumbing", "drywall", "notes"));
     assertEquals(1, property.getInspections().size());
+    assertEquals("12121997", property.getInspections().get(0).getDate());
+
   }
 
   @Test
   public void testGetInspectionByDate() {
     property.addInspection(new Inspection("12121997", "plumbing", "drywall", "notes"));
-    assertEquals("plumbing", property.getInspectionByDate("12121997").getPlumbing());
+      assertEquals("plumbing", property.getInspectionByDate("12121997").getPlumbing());
+  }
+
+  @Test
+  public void testGetInspectionByNonexistentDate() {
+      property.addInspection(new Inspection("12121997", "plumbing", "drywall", "notes"));
+      assertEquals(null, property.getInspectionByDate("12121998"));
   }
 
   @Test

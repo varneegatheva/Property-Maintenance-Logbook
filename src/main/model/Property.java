@@ -15,10 +15,14 @@ public class Property {
         this.inspections = new ArrayList<>();
     }
 
+
+
     public List<Inspection> getInspections() {
         return inspections;
     }
 
+    // MODIFIES: this
+    // EFFECTS: searches inspection list by date and adds an inspection to list if it already doesn't exist
     public void addInspection(Inspection inspection) {
         for (Inspection i : inspections) {
             if (i.getDate().equals(inspection.getDate())) {
@@ -47,6 +51,8 @@ public class Property {
         this.size = size;
     }
 
+    // MODIFIES: this
+    // EFFECTS: searches inspection list by date; returns inspection if found, otherwise returns null
     public Inspection getInspectionByDate(String date) {
         for (Inspection inspection : inspections) {
             if (inspection.getDate().equals(date)) {
@@ -56,6 +62,7 @@ public class Property {
         return null;
     }
 
+    // EFFECTS: returns a string representation of property
     public String toString() {
         return " Property: " + this.address + "\n Size: " + this.size;
     }

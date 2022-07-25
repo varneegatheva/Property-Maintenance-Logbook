@@ -22,6 +22,7 @@ public class Logbook {
         scanner.close();
     }
 
+    // EFFECTS: displays menu of options to user
     public static void logbookMenu() {
         System.out.println();
         System.out.println("Please choose from the following options: ");
@@ -61,6 +62,9 @@ public class Logbook {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new property by asking user for input,
+    //          then adds it to the list of properties
     private void createProperty() {
         Property p = new Property();
         System.out.println("Enter property address: ");
@@ -72,6 +76,7 @@ public class Logbook {
         addPropertyToList(p);
     }
 
+    // EFFECTS: displays list of properties with respective attributes
     private void viewProperties() {
         for (Property p : listProperty) {
             System.out.println("\n");
@@ -80,6 +85,10 @@ public class Logbook {
 
     }
 
+    // REQUIRES: date must be in format MMDDYYYY
+    // MODIFIES: this
+    // EFFECTS: searches list of property for given property; if found, adds inspection to list of inspections
+    //          if property is not found, returns to main menu
     private void addInspectionToProperty() {
         System.out.println("Enter property address: ");
         String propertyAddress = scanner.nextLine();
@@ -108,6 +117,7 @@ public class Logbook {
 
     }
 
+    // EFFECTS: view list of inspections given a property's address; if property does not exist, return to main menu
     private void viewInspectionsForProperty() {
         System.out.println("Enter property address: ");
         String propertyAddress = scanner.nextLine();
@@ -124,7 +134,9 @@ public class Logbook {
         }
     }
 
-
+    // REQUIRES: date must be in format MMDDYYYY
+    // EFFECTS: retrieve inspection, given property address and inspection date;
+    //          if found, return property details; if not found, return to main menu
     private void viewInspectionByDate() {
         System.out.println("Enter property address: ");
         String propertyAddress = scanner.nextLine();
@@ -151,6 +163,8 @@ public class Logbook {
         System.out.println(inspection.toString());
     }
 
+
+    // EFFECTS: given property address, return property if found in property list; otherwise return null
     private Property findProperty(String address) {
         for (Property p : listProperty) {
             if (p.getAddress().equals(address)) {
@@ -160,6 +174,8 @@ public class Logbook {
         return null;
     }
 
+    // MODIFIES: this
+    // EFFECTS: add property to property list
     public void addPropertyToList(Property p) {
         listProperty.add(p);
     }

@@ -8,6 +8,7 @@ public class Inspection {
     String addedNotes;
 
     // REQUIRES: date must have format MMDDYYYY
+    // MODIFIES: this
     // EFFECTS: constructs an inspection with a date, plumbing info, drywall info and added notes
     public Inspection(String date, String plumbing, String drywall, String addedNotes) {
         this.date = date;
@@ -32,6 +33,7 @@ public class Inspection {
         return date;
     }
 
+    // EFFECTS: returns a string representation of inspection
     public String toString() {
         return " Date: " + this.date + "\n Plumbing: " + this.plumbing + "\n Drywall: " + this.drywall
                 + "\n Additional Notes: " + this.addedNotes;
