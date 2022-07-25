@@ -1,4 +1,4 @@
-# My Personal Project: Property Maintenance Tracket
+# My Personal Project: Property Maintenance Logbook
 
 ## Maintenance Application:
 
@@ -9,8 +9,9 @@ if I'm able to invest in a rental property.
 
 
 The **user stories** included:
-- add a date stamped log entry to the book list
-- view my list of entries in the list
-- delete an entry from my list
-- select and view an entry from my list
+- As a user, I want to add properties to my log book
+- As a user, I want to view properties in my log book
+- As a user, I want to be able to add inspection to a property
+- As a user, I want to be able to view all inspections in a property
+- As a user, I want to view an inspection by date for a property
 
