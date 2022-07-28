@@ -26,8 +26,8 @@ public class JsonWriter {
     }
 
     // EFFECTS: writes JSON representation of properties to file
-    public void write(Logbook p) {
-        JSONObject json = p.toJson();
+    public void write(Logbook lop) {
+        JSONObject json = lop.toJson();
         saveToFile(json.toString(5));
     }
 

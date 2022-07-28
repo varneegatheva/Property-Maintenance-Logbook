@@ -3,8 +3,10 @@ package model;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 // Represents a property with different attributes
 public class Property {
@@ -87,5 +89,6 @@ public class Property {
         }
         return jsonArray;
     }
+
 
 }

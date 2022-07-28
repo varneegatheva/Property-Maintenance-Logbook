@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class Logbook {
     public Logbook() {
         listProperty = new ArrayList<Property>();
         scanner = new Scanner(System.in);
-        jsonReader = new JsonReader(JSON_STORE);
+        //jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
         runLogBook();
         scanner.close();
@@ -41,7 +42,10 @@ public class Logbook {
         System.out.println("3. Add inspection to a property");
         System.out.println("4. View all inspections for a property");
         System.out.println("5. View inspection by date for a property");
-        System.out.println("6. Exit");
+        System.out.println("6. Save property to file");
+        System.out.println("7. Save inspection to file");
+        System.out.println("8. Load inspection by date from file");
+        System.out.println("9. Exit");
     }
 
     // MODIFIES: this
@@ -63,6 +67,10 @@ public class Logbook {
             } else if (menuItem.equals("5")) {
                 viewInspectionByDate();
             } else if (menuItem.equals("6")) {
+                savePropertyToFile();
+            //} else if (menuItem.equals("8")) {
+              //  loadInspectionFromFile();
+            } else if (menuItem.equals("9")) {
                 runApp = false;
                 System.out.println("Property Logbook Closed");
 
@@ -71,6 +79,7 @@ public class Logbook {
             }
         }
     }
+
 
     // MODIFIES: this
     // EFFECTS: creates a new property by asking user for input,
@@ -173,6 +182,17 @@ public class Logbook {
         System.out.println(inspection.toString());
     }
 
+    // EFFECTS: saves property and its respective inspections to file
+    private void savePropertyToFile() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(this);
+            jsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
 
     // EFFECTS: given property address, return property if found in property list; otherwise return null
     private Property findProperty(String address) {

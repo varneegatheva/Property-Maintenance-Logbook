@@ -1,0 +1,10 @@
+{"properties": [{
+     "address": "1234 blvd",
+     "size": 300,
+     "inspections": [{
+          "date": "10101997",
+          "drywall": "y",
+          "plumbing": "y",
+          "addedNotes": "y"
+     }]
+}]}
