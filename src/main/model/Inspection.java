@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // Represents an inspection entry of a property
 public class Inspection {
     String date;
@@ -38,4 +40,14 @@ public class Inspection {
         return " Date: " + this.date + "\n Plumbing: " + this.plumbing + "\n Drywall: " + this.drywall
                 + "\n Additional Notes: " + this.addedNotes;
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("date", date);
+        json.put("drywall", drywall);
+        json.put("addedNotes", addedNotes);
+        json.put("plumbing", plumbing);
+        return json;
+    }
+
 }

@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +68,24 @@ public class Property {
     // EFFECTS: returns a string representation of property
     public String toString() {
         return " Property: " + this.address + "\n Size: " + this.size;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("address", address);
+        json.put("size", size);
+        json.put("inspections", inspectionsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns inspections in this property to JSON array
+    private JSONArray inspectionsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Inspection i : inspections) {
+            jsonArray.put(i.toJson());
+        }
+        return jsonArray;
     }
 
 }

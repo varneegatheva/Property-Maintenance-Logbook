@@ -14,4 +14,7 @@ The **user stories** included:
 - As a user, I want to be able to add inspection to a property
 - As a user, I want to be able to view all inspections in a property
 - As a user, I want to view an inspection by date for a property
+- As a user, I want to be able to save my property to file
+- As a user, I want to be able to save my inspection to file
+- As a user, I want to be able to reload an inspection from file, and resume where I left off
 

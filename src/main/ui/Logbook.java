@@ -6,18 +6,28 @@ import java.util.Scanner;
 
 import model.Inspection;
 import model.Property;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 // Represents a console version of the application
 public class Logbook {
 
     private List<Property> listProperty;
     private Scanner scanner;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/logbook.json";
+
 
     // MODIFIES: this
     // EFFECTS: initializes properties and runs app
     public Logbook() {
         listProperty = new ArrayList<Property>();
         scanner = new Scanner(System.in);
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
         runLogBook();
         scanner.close();
     }
@@ -180,5 +190,19 @@ public class Logbook {
         listProperty.add(p);
     }
 
+    // EFFECTS:
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("properties", propertiesToJson());
+        return json;
+    }
 
+    // EFFECTS: returns things in projects as a JSON array
+    public JSONArray propertiesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Property p : listProperty) {
+            jsonArray.put(p.toJson());
+        }
+        return jsonArray;
+    }
 }
