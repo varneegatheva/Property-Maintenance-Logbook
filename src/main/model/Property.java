@@ -21,7 +21,6 @@ public class Property {
     }
 
 
-
     public List<Inspection> getInspections() {
         return inspections;
     }
@@ -71,6 +70,7 @@ public class Property {
     public String toString() {
         return " Property: " + this.address + "\n Size: " + this.size;
     }
+
 
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

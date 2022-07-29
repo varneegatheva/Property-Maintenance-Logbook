@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-// Represents a writer that writes a JSON representation of project to file
+// Represents a writer that writes a JSON representation of logbook to file
 public class JsonWriter {
     private PrintWriter writer;
     private String destination;

@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,7 +28,7 @@ public class Logbook {
     public Logbook() {
         listProperty = new ArrayList<Property>();
         scanner = new Scanner(System.in);
-        //jsonReader = new JsonReader(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
         runLogBook();
         scanner.close();
@@ -43,13 +44,13 @@ public class Logbook {
         System.out.println("4. View all inspections for a property");
         System.out.println("5. View inspection by date for a property");
         System.out.println("6. Save property to file");
-        System.out.println("7. Save inspection to file");
-        System.out.println("8. Load inspection by date from file");
-        System.out.println("9. Exit");
+        System.out.println("7. Load property from file");
+        System.out.println("8. Exit");
     }
 
     // MODIFIES: this
     // EFFECTS: processes user input
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void runLogBook() {
         boolean runApp = true;
         System.out.println("Welcome to Your Property Logbook");
@@ -68,14 +69,26 @@ public class Logbook {
                 viewInspectionByDate();
             } else if (menuItem.equals("6")) {
                 savePropertyToFile();
-            //} else if (menuItem.equals("8")) {
-              //  loadInspectionFromFile();
-            } else if (menuItem.equals("9")) {
+            } else if (menuItem.equals("7")) {
+                loadPropertyFromFile();
+            } else if (menuItem.equals("8")) {
                 runApp = false;
                 System.out.println("Property Logbook Closed");
-
             } else {
                 System.out.println("Please enter a valid menu option");
+            }
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads property from file
+    private void loadPropertyFromFile() {
+        {
+            try {
+                listProperty = jsonReader.read();
+                System.out.println("Loaded from " + JSON_STORE);
+            } catch (IOException e) {
+                System.out.println("Unable to read from file: " + JSON_STORE);
             }
         }
     }
