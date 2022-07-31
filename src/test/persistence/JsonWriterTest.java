@@ -28,15 +28,15 @@ public class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyWorkroom() {
         try {
-            Logbook lb = new Logbook();
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyLogbook.json");
+            Logbook logbook = new Logbook();
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyLogbook.json.json");
             writer.open();
-            writer.write(lb);
+            writer.write(logbook);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyLogbook.json");
-             lb = reader.read();
-            assertEquals(0, lb.numProperties());
+            JsonReader reader = new JsonReader("./data/testWriterEmptyLogbook.json.json");
+            List<Property> lb = reader.read();
+            assertEquals(0, lb.size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -45,20 +45,20 @@ public class JsonWriterTest extends JsonTest {
     @Test
     void testWriterGeneralLogbook() {
         try {
-            Logbook lb = new Logbook();
-            lb.addPropertyToList(new Property("1234 blvd", "300", ));
-            lb.addPropertyToList(new Property("567 ave", "10000", ));
+            Logbook logbook = new Logbook();
+            logbook.addPropertyToList(new Property("1234 blvd", "300", ));
+            logbook.addPropertyToList(new Property("567 ave", "10000", ));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
             writer.open();
-            writer.write(lb);
+            writer.write(logbook);
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
-            lb = reader.read();
-            List<Property> listProperty = lb.getListProperty();
-            assertEquals(2, listProperty.size());
-            checkProperty("1234 blvd", 300, listProperty.get(0));
-            checkProperty("567 ave", 10000, listProperty.get(1));
+            List<Property> lb = reader.read();
+            assertEquals(2, lb.size());
+            checkInspection("10101997", "y", "y", "y", lb.get(0).getInspections().get(0));
+            checkInspection("10111997", "y", "n", "y", lb.get(0).getInspections().get(1));
+            checkInspection("12121997", "n", "n", "n", lb.get(1).getInspections().get(0));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

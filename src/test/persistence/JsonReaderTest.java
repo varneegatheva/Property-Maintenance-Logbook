@@ -28,7 +28,7 @@ public class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderEmptyWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyLogbook.json");
+        JsonReader reader = new JsonReader("./data/testReaderEmptyLogbook.json.json");
         try {
             List<Property> lb = reader.read();
             assertEquals(0, lb.size());
@@ -42,15 +42,13 @@ public class JsonReaderTest extends JsonTest {
         JsonReader reader = new JsonReader("./data/testReaderGeneralWorkRoom.json");
         try {
             List<Property> lb = reader.read();
-            List<Property> listProperty = lb.getListProperty();
             assertEquals(2, lb.size());
-            checkProperty("1234 blvd", 300, listProperty.get(0));
-            checkProperty("567 ave", 10000, listProperty.get(1));
+            checkProperty("1234 blvd", 300, lb.get(0));
+            checkProperty("567 ave", 10000, lb.get(1));
 
-            ArrayList<Property> inspections = reader.read();
-            List<Inspection> inspectionList = inspections.getInspections();
-            checkInspection("10101997", "y", "y", "y", inspectionList.get(0));
-            checkInspection("10111997", "y", "n", "y", inspectionList.get(1));
+            checkInspection("10101997", "y", "y", "y", lb.get(0).getInspections().get(0));
+            checkInspection("10111997", "y", "n", "y", lb.get(0).getInspections().get(1));
+            checkInspection("12121997", "n", "n", "n", lb.get(1).getInspections().get(0));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

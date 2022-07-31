@@ -8,8 +8,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JsonTest {
     protected void checkProperty(String address, int size, Property property) {
-        assertEquals(address, Property.getAddress());
-        assertEquals(size, Property.getSize());
+        assertEquals(address, property.getAddress());
+        assertEquals(size, property.getSize());
     }
 
     protected void checkInspection (String date, String plumbing, String drywall, String addedNotes, Inspection inspection) {

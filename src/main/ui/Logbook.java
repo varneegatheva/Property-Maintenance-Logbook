@@ -35,6 +35,11 @@ public class Logbook {
         scanner.close();
     }
 
+    // EFFECTS: creates new logbook for testing purposes
+    public Logbook(List<Property> properties) {
+        this.listProperty = properties;
+    }
+
     // EFFECTS: displays menu of options to user
     public static void logbookMenu() {
         System.out.println();

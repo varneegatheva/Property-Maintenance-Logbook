@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "address": "1234 blvd",
+      "size": 300,
+      "inspections": [
+        {
+          "date": "10101997",
+          "drywall": "y",
+          "plumbing": "y",
+          "addedNotes": "y"
+        }
+      ]
+    },
+    {
+      "address": "567 ave",
+      "size": 10000,
+      "inspections": [
+        {
+          "date": "12121997",
+          "drywall": "n",
+          "plumbing": "n",
+          "addedNotes": "n"
+        }
+      ]
+    }
+  ]
+}
