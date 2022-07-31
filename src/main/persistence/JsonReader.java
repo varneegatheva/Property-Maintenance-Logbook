@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 // Represents a reader that reads logbook from JSON data stored in file
+// code based on JsonReader from JsonSerializationDemO
 public class JsonReader {
     private String source;
 

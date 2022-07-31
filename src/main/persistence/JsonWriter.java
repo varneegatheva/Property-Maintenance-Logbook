@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 // Represents a writer that writes a JSON representation of logbook to file
+// code based on JsonWriter from JsonSerializationDemO
 public class JsonWriter {
     private PrintWriter writer;
     private String destination;
