@@ -35,7 +35,6 @@ public class Logbook {
         scanner.close();
     }
 
-    // EFFECTS: creates new logbook for testing purposes
     public Logbook(List<Property> properties) {
         this.listProperty = properties;
     }
@@ -245,13 +244,4 @@ public class Logbook {
         return jsonArray;
     }
 
-    // EFFECTS: returns an unmodifiable list of properties in this logbook
-    public List<Property> getListProperty() {
-        return Collections.unmodifiableList(listProperty);
-    }
-
-    // EFFECTS: returns number of thingies in this workroom
-    public int numProperties() {
-        return listProperty.size();
-    }
 }
