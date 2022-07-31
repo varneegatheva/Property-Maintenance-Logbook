@@ -39,7 +39,7 @@ public class Property {
         System.out.println("Inspection added to property");
     }
 
-    public String getAddress() {
+    public static String getAddress() {
         return address;
     }
 
@@ -47,7 +47,7 @@ public class Property {
         this.address = address;
     }
 
-    public int getSize() {
+    public static int getSize() {
         return size;
     }
 

@@ -3,6 +3,7 @@ package ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -237,5 +238,15 @@ public class Logbook {
             jsonArray.put(p.toJson());
         }
         return jsonArray;
+    }
+
+    // EFFECTS: returns an unmodifiable list of properties in this logbook
+    public List<Property> getListProperty() {
+        return Collections.unmodifiableList(listProperty);
+    }
+
+    // EFFECTS: returns number of thingies in this workroom
+    public int numProperties() {
+        return listProperty.size();
     }
 }
