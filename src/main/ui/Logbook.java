@@ -25,7 +25,7 @@ public class Logbook {
 
 
     // MODIFIES: this
-    // EFFECTS: initializes properties and runs app
+    // EFFECTS: initializes properties and runs app with console output
     public Logbook() {
         listProperty = new ArrayList<Property>();
         scanner = new Scanner(System.in);
@@ -37,6 +37,8 @@ public class Logbook {
 
     public Logbook(List<Property> properties) {
         this.listProperty = properties;
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
     }
 
     // EFFECTS: displays menu of options to user
@@ -87,7 +89,7 @@ public class Logbook {
 
     // MODIFIES: this
     // EFFECTS: loads property from file
-    private void loadPropertyFromFile() {
+    public void loadPropertyFromFile() {
         {
             try {
                 listProperty = jsonReader.read();
@@ -201,7 +203,7 @@ public class Logbook {
     }
 
     // EFFECTS: saves property and its respective inspections to file
-    private void savePropertyToFile() {
+    public void savePropertyToFile() {
         try {
             jsonWriter.open();
             jsonWriter.write(this);
@@ -242,6 +244,10 @@ public class Logbook {
             jsonArray.put(p.toJson());
         }
         return jsonArray;
+    }
+
+    public List<Property> getListProperty() {
+        return listProperty;
     }
 
 }

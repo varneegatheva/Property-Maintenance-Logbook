@@ -1,10 +1,12 @@
-{"properties": [{
-     "address": "1234 blvd",
-     "size": 300,
-     "inspections": [{
-          "date": "10101997",
-          "drywall": "y",
-          "plumbing": "y",
-          "addedNotes": "y"
-     }]
-}]}
+{"properties": [
+     {
+          "address": "999 pipers green ave",
+          "size": 400,
+          "inspections": []
+     },
+     {
+          "address": "998 pipers green",
+          "size": 400,
+          "inspections": []
+     }
+]}
