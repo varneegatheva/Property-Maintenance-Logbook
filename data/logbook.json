@@ -1,12 +1,5 @@
-{"properties": [
-     {
-          "address": "999 pipers green ave",
-          "size": 400,
-          "inspections": []
-     },
-     {
-          "address": "998 pipers green",
-          "size": 400,
-          "inspections": []
-     }
-]}
+{"properties": [{
+     "address": "etet",
+     "size": 1010,
+     "inspections": []
+}]}
