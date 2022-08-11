@@ -28,4 +28,8 @@ The **user stories** included:
   to load/save data to/from file
 - You can reload the state of my application by clicking "Load Properties/Inspections" button followed by the "View All Properties" button
 
+# Phase 4: Task 3
+- I would refactor the LogbookGUI class such that the constructor and setupMenu methods would have lines of code extracted out
+  to reduce the number of lines and have them call those methods instead to increase readability 
+
 
