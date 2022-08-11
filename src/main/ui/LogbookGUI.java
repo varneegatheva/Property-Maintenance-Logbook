@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -20,7 +22,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import model.Event;
+import model.EventLog;
 import model.Inspection;
+import model.Logbook;
 import model.Property;
 
 // Represents the controller for responding to all actions taken by user in gui application
@@ -45,6 +50,7 @@ public class LogbookGUI extends JFrame implements ActionListener {
     private Logbook logbook;
 
     // EFFECTS: initializes properties and runs gui app
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public LogbookGUI() {
         super("Property Maintenance Logbook");
         logbook = new Logbook(new ArrayList<>());
@@ -70,6 +76,16 @@ public class LogbookGUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //https://stackoverflow.com/questions/16295942/java-swing-adding-action-listener-for-exit-on-close
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event next : EventLog.getInstance()) {
+                    System.out.println(next);
+                }
+                e.getWindow().dispose();
+            }
+        });
     }
 
     // EFFECTS: Creates main menu panel and initializes main menu buttons with labels
@@ -291,4 +307,6 @@ public class LogbookGUI extends JFrame implements ActionListener {
         createInspectionPanel.setVisible(false);
         menuLabel.setText("");
     }
+
+
 }

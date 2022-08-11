@@ -30,13 +30,11 @@ public class Property {
     public void addInspection(Inspection inspection) {
         for (Inspection i : inspections) {
             if (i.getDate().equals(inspection.getDate())) {
-                System.out.println(
-                        "Inspection with that date already exists for this property, returning to main menu");
                 return;
             }
         }
         inspections.add(inspection);
-        System.out.println("Inspection added to property");
+        EventLog.getInstance().logEvent(new Event("Inspection added to property with address: " + this.getAddress()));
     }
 
     public String getAddress() {

@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 import model.Inspection;
 import model.Property;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import ui.Logbook;
+import model.Logbook;
 
 import java.io.IOException;
 import java.util.List;

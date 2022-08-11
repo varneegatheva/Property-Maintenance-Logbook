@@ -4,10 +4,8 @@ import model.Inspection;
 import model.Property;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import ui.Logbook;
 
 import java.io.IOException;
-import java.lang.reflect.Parameter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -53,7 +51,6 @@ public class JsonReader {
     // MODIFIES: lb
     // EFFECTS: parses properties from JSON object and adds them to logbook
     private void addProperties(ArrayList<Property> lb, JSONObject jsonObject) {
-        System.out.println(jsonObject);
         JSONArray jsonArray = jsonObject.getJSONArray("properties");
         for (Object json : jsonArray) {
             JSONObject nextProperty = (JSONObject) json;

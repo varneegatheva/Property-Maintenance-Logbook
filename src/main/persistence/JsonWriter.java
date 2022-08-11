@@ -2,7 +2,7 @@ package persistence;
 
 import model.Property;
 import org.json.JSONObject;
-import ui.Logbook;
+import model.Logbook;
 
 import java.io.File;
 import java.io.FileNotFoundException;
