@@ -1,10 +1,22 @@
-{"properties": [{
-     "address": "etet",
-     "size": 1010,
-     "inspections": [{
-          "date": "10101997",
-          "drywall": "evm r",
-          "plumbing": "r vem",
-          "addedNotes": " emnr"
-     }]
-}]}
+{"properties": [
+     {
+          "address": "2100 University blvd",
+          "size": 50000,
+          "inspections": [{
+               "date": "07072022",
+               "drywall": "great",
+               "plumbing": "great",
+               "addedNotes": "needs painting"
+          }]
+     },
+     {
+          "address": "2200 University blvd",
+          "size": 5000,
+          "inspections": [{
+               "date": "07072022",
+               "drywall": "great",
+               "plumbing": "great",
+               "addedNotes": "great"
+          }]
+     }
+]}
