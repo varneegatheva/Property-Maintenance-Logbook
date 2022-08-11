@@ -1,5 +1,10 @@
 {"properties": [{
      "address": "etet",
      "size": 1010,
-     "inspections": []
+     "inspections": [{
+          "date": "10101997",
+          "drywall": "evm r",
+          "plumbing": "r vem",
+          "addedNotes": " emnr"
+     }]
 }]}

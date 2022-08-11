@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import model.Inspection;
 import model.Property;
 
 // Represents the controller for responding to all actions taken by user in gui application
@@ -28,10 +29,16 @@ public class LogbookGUI extends JFrame implements ActionListener {
     JPanel mainPanel;
     JPanel viewPanel;
     JPanel createPanel;
+    JPanel createInspectionPanel;
     JLabel menuLabel;
 
     JTextField address;
     JTextField size;
+    JTextField addressInspection;
+    JTextField date;
+    JTextField plumbing;
+    JTextField drywall;
+    JTextField addedNotes;
     JList<Property> propertyJList;
     JPanel mainMenuButtonPanel;
     JButton mainMenuButton;
@@ -57,6 +64,7 @@ public class LogbookGUI extends JFrame implements ActionListener {
         setupMenu();
         setupViewProperties();
         setUpCreateProperty();
+        setUpAddInspectionToProperty();
         this.add(mainMenuButtonPanel);
         pack();
         setLocationRelativeTo(null);
@@ -82,6 +90,10 @@ public class LogbookGUI extends JFrame implements ActionListener {
         btn1.setActionCommand("createProperty");
         btn1.addActionListener(this);
 
+        JButton btn2 = new JButton("Add Inspection To Property");
+        btn2.setActionCommand("createInspection");
+        btn2.addActionListener(this);
+
         JButton btn3 = new JButton("View All Properties");
         btn3.setActionCommand("viewProperties");
         btn3.addActionListener(this);
@@ -93,7 +105,9 @@ public class LogbookGUI extends JFrame implements ActionListener {
         JButton btn5 = new JButton("Load Properties/Inspections");
         btn5.setActionCommand("load");
         btn5.addActionListener(this);
+
         mainPanel.add(btn1);
+        mainPanel.add(btn2);
         mainPanel.add(btn3);
         mainPanel.add(btn4);
         mainPanel.add(btn5);
@@ -150,10 +164,46 @@ public class LogbookGUI extends JFrame implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Adds the panel for creating inspection
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    private void setUpAddInspectionToProperty() {
+        createInspectionPanel = new JPanel();
+        date = new JTextField(8);
+        addressInspection = new JTextField(20);
+        plumbing = new JTextField(30);
+        drywall = new JTextField(30);
+        addedNotes = new JTextField(30);
+        createInspectionPanel.add(new JLabel("Property Address"));
+        createInspectionPanel.add(addressInspection);
+        createInspectionPanel.add(new JLabel("Date (MMDDYYYY)"));
+        createInspectionPanel.add(date);
+        createInspectionPanel.add(new JLabel("Condition of Plumbing"));
+        createInspectionPanel.add(plumbing);
+        createInspectionPanel.add(new JLabel("Condition of Drywall"));
+        createInspectionPanel.add(drywall);
+        createInspectionPanel.add(new JLabel("Additional Notes"));
+        createInspectionPanel.add(addedNotes);
+        JButton saveButton = new JButton("Add Inspection");
+        saveButton.setActionCommand("saveInspection");
+        saveButton.addActionListener(this);
+        createInspectionPanel.add(saveButton);
+        createInspectionPanel.setLayout(new BoxLayout(createInspectionPanel, BoxLayout.Y_AXIS));
+        createInspectionPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        createInspectionPanel.setVisible(false);
+        this.add(createInspectionPanel);
+    }
+
     // EFFECTS: calls the given methods when a certain button is clicked on
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("createProperty")) {
             showCreateProperty();
+        } else if (e.getActionCommand().equals("createInspection")) {
+            mainPanel.setVisible(false);
+            createInspectionPanel.setVisible(true);
+            mainMenuButtonPanel.setVisible(true);
+        } else if (e.getActionCommand().equals("saveInspection")) {
+            saveInspection();
         } else if (e.getActionCommand().equals("saveProperty")) {
             saveProperty();
         } else if (e.getActionCommand().equals("viewProperties")) {
@@ -178,7 +228,28 @@ public class LogbookGUI extends JFrame implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: saves property to logbook
+    // EFFECTS: save inspection to property object
+    private void saveInspection() {
+        if (addressInspection.getText() != null && !addressInspection.getText().isEmpty() && date.getText() != null
+                && !date.getText().isEmpty() && plumbing.getText() != null && !plumbing.getText()
+                .isEmpty()
+                && drywall.getText() != null && !drywall.getText().isEmpty()
+                && addedNotes.getText() != null
+                && !addedNotes.getText().isEmpty()) {
+            Property p = logbook.findProperty(addressInspection.getText());
+
+            if (p != null) {
+                Inspection inspection = new Inspection(date.getText(), plumbing.getText(),
+                        drywall.getText(), addedNotes.getText());
+                p.addInspection(inspection);
+            }
+            showMainMenu();
+        }
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: saves property to logbook object
     private void saveProperty() {
         if (address.getText() != null && !address.getText().isEmpty() && size.getText() != null
                 && !size.getText().isEmpty()) {
@@ -208,10 +279,16 @@ public class LogbookGUI extends JFrame implements ActionListener {
     private void showMainMenu() {
         address.setText("");
         size.setText("");
+        date.setText("");
+        plumbing.setText("");
+        drywall.setText("");
+        addedNotes.setText("");
+        address.setText("");
         mainPanel.setVisible(true);
         viewPanel.setVisible(false);
         createPanel.setVisible(false);
         mainMenuButtonPanel.setVisible(false);
+        createInspectionPanel.setVisible(false);
         menuLabel.setText("");
     }
 }

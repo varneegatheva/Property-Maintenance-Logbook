@@ -215,7 +215,7 @@ public class Logbook {
     }
 
     // EFFECTS: given property address, return property if found in property list; otherwise return null
-    private Property findProperty(String address) {
+    public Property findProperty(String address) {
         for (Property p : listProperty) {
             if (p.getAddress().equals(address)) {
                 return p;
